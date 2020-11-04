@@ -13,6 +13,9 @@ struct ContentView: View {
     @State private var user2Num = 0
     @State private var scoreCounter2 = 0
     @State private var turnCounter = 0
+    @State private var showingAlert = false
+    @State private var winnerAlertMSG = ""
+    
     var body: some View {
         ZStack  {
             LinearGradient(gradient: Gradient(colors: [.red, .blue]), startPoint: .top, endPoint: .bottom)
@@ -42,6 +45,8 @@ struct ContentView: View {
                         .padding()
                 }
             }
+        }.alert(isPresented: $showingAlert) {
+            Alert(title: Text(winnerAlertMSG), dismissButton: .default(Text("Got it!")))
         }
     }
     func submit() {
@@ -57,10 +62,10 @@ struct ContentView: View {
         }
         else {
             if scoreCounter1 > scoreCounter2 {
-                
+                alert(winner: "You Lost!")
             }
-            else if scoreCounter2 > scoreCounter2 {
-                
+            else if scoreCounter2 > scoreCounter1 {
+                alert(winner: "You Won!")
             }
         }
     }
@@ -68,6 +73,10 @@ struct ContentView: View {
         turnCounter += 1
         user1Num = Int.random(in: 2...10)
         user2Num = Int.random(in: 2...10)
+    }
+    func alert(winner: String){
+        self.showingAlert = true
+        winnerAlertMSG = winner
     }
 }
 
