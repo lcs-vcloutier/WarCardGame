@@ -14,24 +14,38 @@ struct ContentView: View {
     @State private var scoreCounter2 = 0
     @State private var turnCounter = 0
     var body: some View {
-        VStack{
-            HStack{
-                Text(String(user1Num))
-                    .padding()
-                Text(String(user2Num))
-                    .padding()
-            }
-            HStack{
-                Text(String(scoreCounter1))
-                    .padding()
-                Text(String(scoreCounter2))
-                    .padding()
-            }
-            Button(action: {
-                submit()
-                    }, label: {
-                        /*@START_MENU_TOKEN@*/Text("Button")/*@END_MENU_TOKEN@*/
+            ZStack  {
+                LinearGradient(gradient: Gradient(colors: [.blue, .red]), startPoint: .top, endPoint: .bottom)
+                    .edgesIgnoringSafeArea(.all)
+                VStack {
+                Text("War")
+                    .font(.title)
+                    .fontWeight(.bold)
+        
+
+                VStack{
+                    HStack(alignment: .top, spacing: /*@START_MENU_TOKEN@*/nil/*@END_MENU_TOKEN@*/, content: {
+                        Text(String(user1Num))
+                            .padding()
+                        Text(String(user2Num))
+                            .padding()
                     })
+                    
+                    
+                    Button(action: {
+                        submit()
+                    }, label: {
+                        Image(systemName: "circle.fill").foregroundColor(.white)
+                    })
+                    HStack{
+                        Text(String(scoreCounter1))
+                            .padding()
+                        Text(String(scoreCounter2))
+                            .padding()
+                    }
+                }
+                
+            }
         }
     }
     func submit() {
@@ -42,9 +56,9 @@ struct ContentView: View {
             else if user2Num > user1Num {
                 scoreCounter2 += user2Num - user1Num
             }
-        user1Num = Int.random(in: 2...10)
-        user2Num = Int.random(in: 2...10)
-        turnCounter += 1
+            user1Num = Int.random(in: 2...10)
+            user2Num = Int.random(in: 2...10)
+            turnCounter += 1
         }
         else {
             if scoreCounter1 > scoreCounter2 {
