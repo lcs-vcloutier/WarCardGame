@@ -21,15 +21,16 @@ struct ContentView: View {
             LinearGradient(gradient: Gradient(colors: [.red, .blue]), startPoint: .top, endPoint: .bottom)
                 .edgesIgnoringSafeArea(.all)
             VStack{
-    
-               
-                Text("Computer: \(user1Num)")
-                    .padding()
-                    .foregroundColor(.black)
-                    .font(.title)
-                    .background(Color.white)
-                    .cornerRadius(10)
-            
+                
+                GroupBox(
+                    label: Label("Computer", systemImage: "person.fill")
+                        .foregroundColor(.red)
+                ) {
+                    Text("\(user1Num)")
+                        .font(.title)
+                }.padding()
+                
+                
                 Button(action: {
                     submit()
                 }, label: {
@@ -41,13 +42,17 @@ struct ContentView: View {
                         .cornerRadius(10)
                 })
                 
-                Text("You: \(user2Num)")
-                    .padding()
-                    .foregroundColor(.black)
-                    .font(.title)
-                    .background(Color.white)
-                    .cornerRadius(10)
-                    
+                GroupBox(
+                    label: Label("You", systemImage: "person.fill")
+                        .foregroundColor(.red)
+                ) {
+                    Text("\(user2Num)")
+                        .font(.title)
+                }.padding()
+                
+                
+                
+                
                 
             }
         }.alert(isPresented: $showingAlert) {
