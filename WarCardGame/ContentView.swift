@@ -21,29 +21,34 @@ struct ContentView: View {
             LinearGradient(gradient: Gradient(colors: [.red, .blue]), startPoint: .top, endPoint: .bottom)
                 .edgesIgnoringSafeArea(.all)
             VStack{
-                
-                HStack {
-                    ForEach(0..<scoreCounter1) { _ in
-                        Image(systemName: "circle.fill").foregroundColor(.white)
-                    }
-                }
+    
+               
                 Text("Computer: \(user1Num)")
                     .padding()
-                
-                
-                
+                    .foregroundColor(.black)
+                    .font(.title)
+                    .background(Color.white)
+                    .cornerRadius(10)
+            
                 Button(action: {
                     submit()
                 }, label: {
-                    Image(systemName: "circle.fill").foregroundColor(.white)
+                    Text("WAR")
+                        .padding()
+                        .foregroundColor(.black)
+                        .font(.largeTitle)
+                        .background(Color.white)
+                        .cornerRadius(10)
                 })
                 
                 Text("You: \(user2Num)")
                     .padding()
-                ForEach(0..<scoreCounter2) {_ in
-                    Text("I")
-                        .padding()
-                }
+                    .foregroundColor(.black)
+                    .font(.title)
+                    .background(Color.white)
+                    .cornerRadius(10)
+                    
+                
             }
         }.alert(isPresented: $showingAlert) {
             Alert(title: Text(winnerAlertMSG), dismissButton: .default(Text("Got it!")))
@@ -77,6 +82,11 @@ struct ContentView: View {
     func alert(winner: String){
         self.showingAlert = true
         winnerAlertMSG = winner
+        user1Num = 0
+        scoreCounter1 = 0
+        user2Num = 0
+        scoreCounter2 = 0
+        turnCounter = 0
     }
 }
 
