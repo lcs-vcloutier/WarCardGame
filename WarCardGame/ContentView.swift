@@ -14,23 +14,17 @@ struct ContentView: View {
     @State private var scoreCounter2 = 0
     @State private var turnCounter = 0
     var body: some View {
-            ZStack  {
-                LinearGradient(gradient: Gradient(colors: [.blue, .red]), startPoint: .top, endPoint: .bottom)
-                    .edgesIgnoringSafeArea(.all)
-                VStack {
-                Text("War")
-                    .font(.title)
-                    .fontWeight(.bold)
-        
-
+        ZStack  {
+            LinearGradient(gradient: Gradient(colors: [.white, .pink]), startPoint: .top, endPoint: .bottom)
+                .edgesIgnoringSafeArea(.all)
+            VStack {
                 VStack{
-                    HStack(alignment: .top, spacing: /*@START_MENU_TOKEN@*/nil/*@END_MENU_TOKEN@*/, content: {
+                    HStack(alignment: .top, spacing: nil, content: {
                         Text(String(user1Num))
                             .padding()
-                        Text(String(user2Num))
+                        Text(String(scoreCounter1))
                             .padding()
                     })
-                    
                     
                     Button(action: {
                         submit()
@@ -38,27 +32,25 @@ struct ContentView: View {
                         Image(systemName: "circle.fill").foregroundColor(.white)
                     })
                     HStack{
-                        Text(String(scoreCounter1))
+                        Text("You: \(user2Num)")
                             .padding()
-                        Text(String(scoreCounter2))
+                        Text("Your score: \(user2Num)")
                             .padding()
                     }
                 }
-                
             }
         }
     }
     func submit() {
-        if turnCounter <= 25 {
+        if turnCounter < 25 {
             if user1Num > user2Num {
-                scoreCounter1 += user1Num - user2Num
+                scoreCounter1 += 1
+                setNumbers()
             }
-            else if user2Num > user1Num {
-                scoreCounter2 += user2Num - user1Num
+            else  {
+                scoreCounter2 += 1
+                setNumbers()
             }
-            user1Num = Int.random(in: 2...10)
-            user2Num = Int.random(in: 2...10)
-            turnCounter += 1
         }
         else {
             if scoreCounter1 > scoreCounter2 {
@@ -68,6 +60,11 @@ struct ContentView: View {
                 
             }
         }
+    }
+    func setNumbers(){
+        turnCounter += 1
+        user1Num = Int.random(in: 2...10)
+        user2Num = Int.random(in: 2...10)
     }
 }
 
