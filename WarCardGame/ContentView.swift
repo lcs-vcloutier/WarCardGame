@@ -21,6 +21,12 @@ struct ContentView: View {
                 Text(String(user2Num))
                     .padding()
             }
+            HStack{
+                Text(String(scoreCounter1))
+                    .padding()
+                Text(String(scoreCounter2))
+                    .padding()
+            }
             Button(action: {
                 submit()
                     }, label: {
@@ -29,16 +35,24 @@ struct ContentView: View {
         }
     }
     func submit() {
-        if turnCounter >= 52 {
+        if turnCounter <= 25 {
             if user1Num > user2Num {
                 scoreCounter1 += user1Num - user2Num
-            } else if
-        user1Num = Int.random(in: 2...14)
-        user2Num = Int.random(in: 2...14)
+            }
+            else if user2Num > user1Num {
+                scoreCounter2 += user2Num - user1Num
+            }
+        user1Num = Int.random(in: 2...10)
+        user2Num = Int.random(in: 2...10)
         turnCounter += 1
         }
         else {
-            
+            if scoreCounter1 > scoreCounter2 {
+                
+            }
+            else if scoreCounter2 > scoreCounter2 {
+                
+            }
         }
     }
 }
