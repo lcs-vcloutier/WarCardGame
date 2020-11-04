@@ -15,28 +15,31 @@ struct ContentView: View {
     @State private var turnCounter = 0
     var body: some View {
         ZStack  {
-            LinearGradient(gradient: Gradient(colors: [.white, .pink]), startPoint: .top, endPoint: .bottom)
+            LinearGradient(gradient: Gradient(colors: [.red, .blue]), startPoint: .top, endPoint: .bottom)
                 .edgesIgnoringSafeArea(.all)
-            VStack {
-                VStack{
-                    HStack(alignment: .top, spacing: nil, content: {
-                        Text(String(user1Num))
-                            .padding()
-                        Text(String(scoreCounter1))
-                            .padding()
-                    })
-                    
-                    Button(action: {
-                        submit()
-                    }, label: {
+            VStack{
+                
+                HStack {
+                    ForEach(0..<scoreCounter1) { _ in
                         Image(systemName: "circle.fill").foregroundColor(.white)
-                    })
-                    HStack{
-                        Text("You: \(user2Num)")
-                            .padding()
-                        Text("Your score: \(user2Num)")
-                            .padding()
                     }
+                }
+                Text("Computer: \(user1Num)")
+                    .padding()
+                
+                
+                
+                Button(action: {
+                    submit()
+                }, label: {
+                    Image(systemName: "circle.fill").foregroundColor(.white)
+                })
+                
+                Text("You: \(user2Num)")
+                    .padding()
+                ForEach(0..<scoreCounter2) {_ in
+                    Text("I")
+                        .padding()
                 }
             }
         }
